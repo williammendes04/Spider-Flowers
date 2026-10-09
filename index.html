@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Spider Flowers</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <canvas id="garden" aria-hidden="true"></canvas>
+
+  <!-- Símbolo do naipe único: uma flor abstrata. Edite aqui para trocar o desenho. -->
+  <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+    <symbol id="flower" viewBox="0 0 100 100">
+      <g fill="currentColor">
+        <ellipse cx="50" cy="24" rx="12" ry="22"/>
+        <ellipse cx="50" cy="24" rx="12" ry="22" transform="rotate(60 50 50)"/>
+        <ellipse cx="50" cy="24" rx="12" ry="22" transform="rotate(120 50 50)"/>
+        <ellipse cx="50" cy="24" rx="12" ry="22" transform="rotate(180 50 50)"/>
+        <ellipse cx="50" cy="24" rx="12" ry="22" transform="rotate(240 50 50)"/>
+        <ellipse cx="50" cy="24" rx="12" ry="22" transform="rotate(300 50 50)"/>
+      </g>
+      <g style="fill: var(--petal-2)">
+        <ellipse cx="50" cy="34" rx="7" ry="14" transform="rotate(30 50 50)"/>
+        <ellipse cx="50" cy="34" rx="7" ry="14" transform="rotate(90 50 50)"/>
+        <ellipse cx="50" cy="34" rx="7" ry="14" transform="rotate(150 50 50)"/>
+        <ellipse cx="50" cy="34" rx="7" ry="14" transform="rotate(210 50 50)"/>
+        <ellipse cx="50" cy="34" rx="7" ry="14" transform="rotate(270 50 50)"/>
+        <ellipse cx="50" cy="34" rx="7" ry="14" transform="rotate(330 50 50)"/>
+      </g>
+      <circle cx="50" cy="50" r="9" style="fill: var(--paper)"/>
+    </symbol>
+  </svg>
+
+  <header class="topbar">
+    <h1>Spider Flowers</h1>
+
+    <dl class="stats">
+      <div><dt>Tempo</dt><dd id="stat-time">00:00</dd></div>
+      <div><dt>Movimentos</dt><dd id="stat-moves">0</dd></div>
+      <div><dt>Pontos</dt><dd id="stat-score">500</dd></div>
+      <div><dt>Sequências</dt><dd id="stat-seq">0/8</dd></div>
+      <div><dt>Monte</dt><dd id="stat-stock">5</dd></div>
+      <div class="session"><dt>Sessão</dt><dd id="stat-session">0 pts · 0 vitórias</dd></div>
+    </dl>
+
+    <div class="actions">
+      <button id="btn-new" class="primary" type="button">Novo jogo</button>
+      <button id="btn-undo" type="button">Desfazer</button>
+      <button id="btn-hint" type="button">Dica</button>
+      <button id="btn-shuffle" type="button" title="Reembaralha as cartas do monte. Só uma vez por partida.">Embaralhar monte (1)</button>
+      <button id="btn-settings" type="button">Configurações</button>
+    </div>
+  </header>
+
+  <div class="table-wrap" id="wrap">
+    <div class="table">
+      <section class="rail">
+        <button id="stock" class="stock" type="button"></button>
+        <div id="foundation" class="foundation" aria-label="Sequências completas"></div>
+      </section>
+      <main id="board" class="board"></main>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="win" class="win">
+    <svg class="win-flower" aria-hidden="true"><use href="#flower"/></svg>
+    <h2>Jardim completo!</h2>
+    <p id="win-msg"></p>
+    <button id="btn-again" class="primary" type="button">Jogar de novo</button>
+  </dialog>
+
+  <dialog id="settings" class="win panel">
+    <h2>Configurações</h2>
+
+    <label class="row">
+      <span>Fundo animado</span>
+      <input id="opt-bg" type="checkbox" role="switch">
+    </label>
+
+    <fieldset class="row palettes">
+      <legend>Cor das flores</legend>
+      <label class="swatch">
+        <input type="radio" name="palette" value="framboesa">
+        <svg style="color:#b8265f; --petal-2:#f0a63a; --paper:#f7f3ec"><use href="#flower"/></svg>
+        <span>Framboesa</span>
+      </label>
+      <label class="swatch">
+        <input type="radio" name="palette" value="violeta">
+        <svg style="color:#6b3fa0; --petal-2:#f2b84b; --paper:#f7f3ec"><use href="#flower"/></svg>
+        <span>Violeta</span>
+      </label>
+      <label class="swatch">
+        <input type="radio" name="palette" value="cobalto">
+        <svg style="color:#1f5fbf; --petal-2:#f2b84b; --paper:#f7f3ec"><use href="#flower"/></svg>
+        <span>Cobalto</span>
+      </label>
+    </fieldset>
+
+    <form method="dialog"><button class="primary" type="submit">Fechar</button></form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>

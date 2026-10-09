@@ -1,0 +1,3 @@
+Coloque aqui a arte do verso das cartas com o nome: card-back.png
+Proporcao recomendada 5:7 (ex.: 500x700 px).
+Ela sera carregada automaticamente ao abrir o index.html.
